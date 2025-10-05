@@ -1,6 +1,6 @@
 # Repositorio taller CINTIA 2025
 
-Repositorio para el taller *Aplicación de un pipeline completo de Machine Learning aplicado a predicción* en el marco de la *Conferencia Internacional: Aplicaciones en Inteligencia Artificial | 2025*
+Repositorio para el taller *Aplicación de un pipeline completo de Machine Learning aplicado a predicción* en el marco de la [*Conferencia Internacional: Aplicaciones en Inteligencia Artificial | 2025*](https://sites.google.com/view/cintia-aria/2025/ponentes?authuser=0)
 
 ## Descripción
 
