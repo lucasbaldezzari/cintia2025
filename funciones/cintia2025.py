@@ -1,6 +1,9 @@
 import numpy as np
 np.set_printoptions(precision=3, suppress=True)
 import pandas as pd
+pd.options.display.float_format = '{:.3f}'.format
+import sklearn
+sklearn.set_config(display="diagram")
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -15,7 +18,12 @@ from sklearn.metrics.pairwise import rbf_kernel
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.compose import make_column_selector, make_column_transformer
-#importo FunctionTransformer
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import root_mean_squared_error
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import GridSearchCV
 
 def load_housing_data():
     try:
