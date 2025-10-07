@@ -7,7 +7,7 @@ Repositorio para el taller *Aplicación de un pipeline completo de Machine Learn
 En este taller aplicaremos conceptos de análisis y graficación de datos para la extracción, preparación (normalización, estandarización, manejo de variables categóricas) y fusión de características para entrenar, testear y analizar la performance de diferentes modelos de Machine Learning (ML) con el objetivo de predecir el precio de viviendas. El taller será eminentemente práctico, utilizaremos Google Colab para generar gráficas y tablas que nos permitan entender los datos y así obtener indicadores claves para luego aplicar diferentes técnicas de procesamiento y extracción de características antes de entrenar diferentes modelos de ML para compararlos. El taller está dirigido a personas que no tengan experiencia previa en este tipo de problemas, no se requiere conocimientos en programación. El nivel es básico/intermedio.
 
 - Duración: 1 hora
-- Nivel: Básico
+- **Nivel: Básico**
 - Modalidad: Virtual
 
 ## Disertante
