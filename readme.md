@@ -16,6 +16,12 @@ En este taller aplicaremos conceptos de análisis y graficación de datos para l
 
 Lucas BALDEZZARI es Profesor Adjunto de la carrera de Ingeniería [Biomédica de la Universidad Tecnológica](https://utec.edu.uy/es/). Es el fundador y responsable del Laboratorio de Neurociencias e Inteligencia Artificial Aplicada (Neuro-IA LAB) del ITR-SO (Fray Bentos). Es Bioingeniero por la facultad de Ingeniería de la Universidad Nacional de Entre Ríos (UNER, Argentina), posee una Maestría en Ciencia de Datos por la UTEC y el Massachusetts Institute of Technology (MIT), es candidato a Doctor en Ingeniería con mención en Bioingeniería por la UNER. Su tesis doctoral trata sobre el estudio de biomarcadores a partir de electroencefalograma de superficie para la decodificación de trazos de escritura a mano alzada para comunicación alternativa a través de Interfaces Cerebro Computadora (ICC). Sus intereses son el procesamiento avanzado de señales, Machine Learning e Inteligencia Artificial aplicada a Neurociencias, particularmente a las ICCs.
 
+## Colab
+
+Podes acceder al notebook de Google Colab con el código del taller en el siguiente enlace:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/16NwnN7Udh_Jv4jRC_K6TaJ_V86CoFpoX?usp=sharing)
+
 ### Fuentes
 
 - *"Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow. Concepts, Tools and Techniques to build intelligent systems"* - aurélien Géron.
