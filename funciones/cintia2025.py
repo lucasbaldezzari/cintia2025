@@ -24,13 +24,13 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import learning_curve
 
 def load_housing_data():
     try:
-        data = pd.read_csv("cintia2025\\datasets\\housing\\housing.csv")
+        data = pd.read_csv("cintia2025//datasets//housing//housing.csv")
     except FileNotFoundError:
         data = pd.read_csv("datasets\\housing\\housing.csv")
-
     return data
 
 def plot_histograms(data, figsize=(14, 8), bins=50, color="#5f4db1"):
@@ -197,3 +197,30 @@ def get_FullProcesamiento():
     ], remainder=num_pipeline)  # El resto de columnas numéricas
 
     return preprocesamiento
+
+def CVAnalysis(grid_results):
+    resumen = pd.DataFrame(grid_results)
+    resumen = resumen[["param_preprocesamiento__geo__n_clusters",
+                       "param_modelo__max_features", "split0_test_score",
+                       "split1_test_score", "split2_test_score", "mean_test_score"]]
+    score_columns = ["split0", "split1", "split2", "mean_test_rmse"]
+    resumen.columns = ["n_clusters", "max_features"] + score_columns
+    resumen[score_columns] = -resumen[score_columns].round(2).astype(np.int64)
+
+    return resumen
+
+def plot_learning_curve(best, features, labels, cv=20, figsize=(10,4),title="Curva de aprendizaje"):
+    """
+    Dibuja la learning curve del mejor modelo encontrado en grid_search.
+    """
+
+    sizes, tr, te = learning_curve(best, features, labels,
+                                scoring="neg_root_mean_squared_error",
+                                train_sizes=np.linspace(0.1,1.0,8), cv=cv, n_jobs=-1)
+
+    plt.figure(figsize=figsize)
+    plt.plot(sizes, -tr.mean(1), label="Entrenamiento", color = "#ff5722")
+    plt.plot(sizes, -te.mean(1), label="Validación", color = "#2196f3")
+    plt.legend(); plt.xlabel("Tamaño de entrenamiento"); plt.ylabel("RMSE"); plt.grid(True)
+    plt.title(title)
+    plt.show()
