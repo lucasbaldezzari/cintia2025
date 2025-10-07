@@ -6,13 +6,16 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from pandas.plotting import scatter_matrix
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler, FunctionTransformer
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils.validation import check_array, check_is_fitted
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import rbf_kernel
-
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.compose import make_column_selector, make_column_transformer
+#importo FunctionTransformer
 
 def load_housing_data():
     try:
@@ -136,3 +139,53 @@ class ClusterSimilarity(BaseEstimator, TransformerMixin):
     
     def get_feature_names_out(self, names=None):
         return [f"Cluster {i} similarity" for i in range(self.n_clusters)]
+    
+def ratio_columnas(X):
+    """
+    Calcula la razón entre dos columnas del array X.
+    """
+    return X[:, [0]] / X[:, [1]]
+
+def ratio_name(function_transformer, feature_names_in):
+    """
+    Genera un nombre para la nueva característica creada por la función
+    function_transformer.
+    """
+    return ["ratio"]
+
+def ratio_pipeline():
+    return Pipeline([
+        ("imputer", SimpleImputer(strategy="median")),
+        ("function_transformer", FunctionTransformer(ratio_columnas, feature_names_out=ratio_name)),
+        ("scaler", StandardScaler()),
+    ])
+
+def get_FullProcesamiento():
+    log_pipe = Pipeline([
+        ("imputer", SimpleImputer(strategy="median")),
+        ("log_transformer", FunctionTransformer(np.log, feature_names_out="one-to-one")),
+        ("scaler", StandardScaler()),
+    ])
+
+    cluster_simil = ClusterSimilarity(n_clusters=10, gamma=1., random_state=42)
+
+    num_pipeline = Pipeline([
+        ("imputer", SimpleImputer(strategy="median")),
+        ("scaler", StandardScaler()),
+    ])
+
+    pipeline_categorico = Pipeline([
+    ("imputer", SimpleImputer(strategy="most_frequent")),  # Paso de imputación
+    ("onehot", OneHotEncoder(handle_unknown="ignore")),  # Paso de codificación one-hot
+    ])
+
+    preprocesamiento = ColumnTransformer([
+        ("bedrooms", ratio_pipeline(), ["total_bedrooms", "total_rooms"]),  # Nueva variable
+        ("rooms_per_house",ratio_pipeline(), ["total_rooms", "households"]),  # Nueva variable
+        ("people_per_house", ratio_pipeline(), ["population", "households"]),  # Nueva variable
+        ("log", log_pipe, ["total_bedrooms", "total_rooms", "population", "households", "median_income"] ),  # Transformación logarítmica
+        ("geo", cluster_simil, ["latitude", "longitude"]),  # Similitud geográfica
+        ("cat", pipeline_categorico, make_column_selector(dtype_include=object)),  # One-hot encoding
+    ], remainder=num_pipeline)  # El resto de columnas numéricas
+
+    return preprocesamiento
