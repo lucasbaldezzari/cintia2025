@@ -22,7 +22,8 @@ Podes acceder al notebook de Google Colab con el código del taller en el siguie
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/16NwnN7Udh_Jv4jRC_K6TaJ_V86CoFpoX?usp=sharing)
 
-### Fuentes
+## Fuentes y bibliografía
 
-- *"Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow. Concepts, Tools and Techniques to build intelligent systems"* - aurélien Géron.
-- *"Matehmatics for Machine Learning"* - Mar Peter Deisenroth, A. Aldo Faisal, Cheng Soon Ong.
+1. *"Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow. Concepts, Tools and Techniques to build intelligent systems"* - Aurélien Géron.
+2. *"Matehmatics for Machine Learning"* - Mar Peter Deisenroth, A. Aldo Faisal, Cheng Soon Ong.
+3. [*Repositorio BCIHACK2* - Lucas Baldezzari.](https://github.com/lucasbaldezzari/bcihack2)
