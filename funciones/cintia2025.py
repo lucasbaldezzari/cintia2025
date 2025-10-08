@@ -24,6 +24,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
+from sklearn.utils.validation import check_array, check_is_fitted
 from sklearn.model_selection import learning_curve
 
 def load_housing_data():
